@@ -1,0 +1,118 @@
+@media screen and (min-device-width: 991px) and (max-device-width: 1199px) {
+    .navbar-expand-lg .navbar-nav .nav-link {
+        font-size: 13px;
+    }
+
+    .nav-item {
+        margin: 0 10px;
+        position: relative;
+    }
+
+    a.group_link {
+        padding: 9px;
+
+    }
+}
+
+@media only screen and (max-width: 1199px) {
+    .slider_wrapper {
+        padding-top: 60px;
+        padding-bottom: 0;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .sticky a.navbar-brand img {
+        filter: invert(1);
+    }
+
+    .group_btn.d-none.d-sm-block {
+        display: none !important;
+    }
+
+    nav.navbar.navbar-expand-lg.navbar-dark {
+        position: relative;
+    }
+
+    div#navigation {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 100%;
+    }
+
+    .d-flex.flex-row.order-2.order-lg-3.user_info {
+        display: none !important;
+    }
+
+    .social_profile ul li {
+        margin: 4px;
+    }
+
+    .section {
+        padding-bottom: 0;
+    }
+
+    .footer  .col-md-4.col-sm-12.col-xs-12 {
+        margin-top: 30px;
+    }
+    .single_footer {
+        margin-bottom: 30px;
+    }
+    .single_footer h4 {
+        margin-bottom: 16px;
+
+    }
+    .single_footer.single_footer_address {
+        margin: 0;
+    }
+    section.section.blog_post_sec {
+        padding-top: 120px;
+    }
+}
+
+@media(max-width:767px) {
+
+    .profile-side {
+        background: white;
+        height: auto;
+    }
+
+    .card-body.info_mation {
+        height: auto;
+    }
+
+    .bottom_links {
+        display: block;
+
+    }
+
+    p.copyright {
+        text-align: center;
+    }
+
+    .panel-default>.panel-heading a {
+        font-size: 16px;
+    }
+    .newsletter-block .form-control {
+        height: 70px;
+    }
+
+}
+
+@media(max-width:575px) {
+    .banner_box {
+        align-items: center;
+    }
+
+    .form_bg .container .form_container {
+        padding: 30px 20px;
+    }
+}
+
+@media only screen and (max-width: 424px) {
+    a.navbar-brand img {
+        max-width: 120px;
+
+    }
+}
