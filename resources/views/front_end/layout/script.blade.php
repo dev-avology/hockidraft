@@ -1,7 +1,8 @@
 <script src="{{asset('javascript/jquery.js')}}"></script>
 <script src="{{asset('javascript/bootstrap.min.js')}}"></script>
 <script src="{{asset('javascript/custom.js')}}"></script>
-<script src="{{asset('javascript/owl.carousel.min.js')}}"></script>
+<script src="{{asset('javascript/owl.carousel.min.js')}}"></script>     
+<script src="{{asset('javascript/bootstrap.bundle.min.js')}}"></script>     
 
   <script>
     $('.slider_row').owlCarousel({
@@ -60,10 +61,11 @@
     window.addEventListener("load", executeCodes);
   </script>
   
-  
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
 <script src="https://www.google.com/recaptcha/api.js"
 		async defer></script>
-<script src="//cdn.datatables.net/2.1.4/js/dataTables.min.js"></script>
+{{-- <script src="//cdn.datatables.net/2.1.4/js/dataTables.min.js"></script> --}}
 
 <script>
 	var timezone = Intl.DateTimeFormat().resolvedOptions().timeZone; console.log('timezone'+timezone);

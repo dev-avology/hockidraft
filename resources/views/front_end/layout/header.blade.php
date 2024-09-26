@@ -60,7 +60,7 @@
                                             Matches</a>
                                     </li>
                                     <li>
-                                        <a href="#"><img src="{{asset('images/logo.png')}}" alt="logout">log Out</a>
+                                        <a href="{{ route('logout') }}"><img src="{{asset('images/logo.png')}}" alt="logout">log Out</a>
                                     </li>
                                 </ul>
                             </div>

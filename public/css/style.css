@@ -2659,3 +2659,176 @@ button.owl-next {
 .card-body span {
     margin-bottom: 10px;
 }
+
+/* players page css start */
+
+section.premier_bg {
+    padding: 90px 0;
+    }
+   .play-bet a.back-btn {
+    display: inline-block;
+    padding: 5px 26px;
+    background: #ee1e46;
+    border-radius: 4px;
+    margin: 0 0 20px;
+    line-height: 1;
+    transition: all 0.2s ease-in-out;
+    }
+    .play-bet .leagure_container h1 {
+    color: #333;
+    text-align: center;
+    font-weight: 700;
+    font-size: 36px;
+    margin-bottom: 30px;
+    }
+    .play-bet   .palyer-header {
+       color: #fff;
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+border-radius: 14px;
+border: 2px solid #ee1e46;
+padding: 10px;
+margin: 0 0 40px;
+background: linear-gradient(15deg, #ee1e46, #ee1e46);
+align-items: center;
+    }
+    .play-bet  .palyer-header .team-logo img {
+    width: 80px;
+    aspect-ratio: 1;
+    object-fit: contain;
+    }
+    .play-bet  .palyer-header .team-logo h6 {
+    text-transform: capitalize;
+    font-size: 16px;
+    color: #fff;
+    margin-top: 5px;
+    }
+    .play-bet  .palyer-header .match-details {
+    text-align: center;
+    }
+    .play-bet    .palyer-header .match-details h6 {
+    font-size: 16px;
+    color: #fff;
+    }
+    .play-bet  .palyer-header .match-details p {
+    font-size: 16px;
+    color: #fff;
+    }
+    .play-bet  .palyer-header .match-details span {
+    font-size: 14px;
+    color: #f2f2f2;
+    }
+    .play-bet   .palyer-header .team-logo:last-child {
+    text-align: right;
+    }
+    .play-bet .player-tab .nav-tabs {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-bottom: -10px;
+    position: relative;
+    z-index: 1;
+    background: #fff;
+    }
+    .play-bet  .nav-tabs .nav-item {
+    margin-bottom: -1px;
+    margin: 0 0px;
+    }
+    .play-bet  .player-tab .nav-tabs .nav-item .nav-link {
+    width: 100%;
+    text-align: center;
+    color: #1e1e4b;
+    margin: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0;
+    font-weight: 700;
+    font-size: 20px;
+    padding: 13px 1rem;
+    }
+    .play-bet  .player-tab .nav-tabs .nav-item:first-child button {
+    border-top-left-radius: 14px;
+    }
+    .play-bet  .player-tab .nav-tabs .nav-item .nav-link.active {
+    background: #ee1e46;
+    color: #fff;
+    }
+    .play-bet .player-tab .nav-tabs .nav-item:last-child button {
+    border-top-right-radius: 14px;
+    }
+    .play-bet  .div-tbl {
+    overflow: auto;
+    }
+    .play-bet  section.premier_bg table {
+    border-radius: 14px;
+    overflow: hidden;
+    min-width: 800px;
+    }
+    .play-bet  .premier_bg .table tr {
+    position: relative;
+    }
+    .play-bet  .premier_players .table th:first-child, .play-bet .premier_players .table td:first-child {
+    width: 120px;
+    }
+    .play-bet  .table .thead-light th {
+       color: #1e1e4b !important;
+background-color: #e9ecef !important;
+border-color: #dee2e6 !important;
+padding: 25px 15px 15px !important;
+    }
+    .play-bet .premier_bg .table tr {
+    position: relative;
+    }
+    .play-bet  .premier_players .table td {
+    vertical-align: middle;
+    position: relative;
+    }
+    .play-bet  .leagure_container td, .play-bet .leagure_container th {
+    padding: 5px 18px;
+    color: #29292a;
+    font-size: 15px;
+    vertical-align: middle;
+    }
+    .play-bet  .team-logo img {
+    width: 40px;
+    aspect-ratio: 1;
+    object-fit: contain;
+    }
+    .play-bet  .premier_players .table td p {
+    font-size: 16px;
+    }
+    .play-bet  .premier_players .table td {
+    vertical-align: middle;
+    position: relative;
+    }
+    .play-bet  .premier_players .table td.credits_points span {
+    font-size: 16px;
+    }
+    .play-bet  .credits_points button {
+    border-radius: 50%;
+    background: transparent;
+    border: 2px solid;
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    line-height: 1;
+    right: 20px;
+    }
+    .play-bet .credits_points button.plus {
+    border-color: #00c900;
+    }
+    .play-bet  .credits_points button i {
+    font-size: 13px;
+    }
+    .play-bet  .credits_points button.plus i {
+    color: #00c900;
+    }
+    .play-bet  .credits_points button.minus {
+    border-color: #e71e3c;
+    /* display: none; */
+    }
+    .play-bet .credits_points button.minus i {
+    color: #e71e3c;
+    }
+
+
+/* players page css end */

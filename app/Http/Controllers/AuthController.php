@@ -60,4 +60,10 @@ class AuthController extends Controller
         return redirect()->back()->with('success','You are sign up successfully!');
     }
 
+    public function logout()
+    {
+        Session::flush();
+        return redirect()->route('home');
+    }
+
 }

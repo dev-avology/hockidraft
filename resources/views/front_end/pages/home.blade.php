@@ -25,21 +25,10 @@
   <div class="sliders">
     <div class="slide-track">
       <!-- Repeating images for continuous scrolling -->
-      <div class="slide"><img src="images/sliders1.png" alt="Image 1"></div>
-      <div class="slide"><img src="images/sliders2.png" alt="Image 2"></div>
-      <div class="slide"><img src="images/sliders3.png" alt="Image 3"></div>
-      <div class="slide"><img src="images/sliders4.webp" alt="Image 4"></div>
-      <div class="slide"><img src="images/sliders5.png" alt="Image 5"></div>
-      <div class="slide"><img src="images/sliders6.jpg" alt="Image 6"></div>
-      <div class="slide"><img src="images/sliders7.jpg" alt="Image 7"></div>
-      <!-- Duplicate images for infinite effect -->
-      <div class="slide"><img src="images/sliders1.png" alt="Image 1"></div>
-      <div class="slide"><img src="images/sliders2.png" alt="Image 2"></div>
-      <div class="slide"><img src="images/sliders3.png" alt="Image 3"></div>
-      <div class="slide"><img src="images/sliders4.webp" alt="Image 4"></div>
-      <div class="slide"><img src="images/sliders5.png" alt="Image 5"></div>
-      <div class="slide"><img src="images/sliders6.jpg" alt="Image 6"></div>
-      <div class="slide"><img src="images/sliders7.jpg" alt="Image 7"></div>
+      @foreach($leagues as $key => $value)
+        <div class="slide"><a href="{{ route('leagueMatches',['leagueId'=>$value->id]) }}"><img src="{{$value->logo}}" alt="Image 1"></a></div>
+      @endforeach
+
     </div>
   </div>
 

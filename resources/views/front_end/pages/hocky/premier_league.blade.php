@@ -21,13 +21,13 @@
      <div class="leagure_container">
         <div class="flex flex-col items-center justify-center w-screen min-h-screen bg-gray-900 py-10">
            <!-- Component Start -->
-           <h1 class="font-medium">2023-24 Season</h1>
+           <h1 class="font-medium">{{date('Y')}} Season</h1>
            <div class="flex flex-col mt-6">
               <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                  <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                     <div class="leagues-table">
                      <div class="div-tbl">
-                         <table class="table table-light table-striped table-hover table-sm">
+                         <table class="table table-light table-striped table-hover table-sm" id="myTable">
                             <thead class="thead-light text-uppercase">
                                <tr>
                                   <th scope="col"></th>
@@ -38,258 +38,30 @@
                                </tr>
                             </thead>
                             <tbody>
+                              @foreach ($leagues as $key => $league)
                                <tr>
                                   <td class="league-logo">
-                                     <img src="images/league-logo.png" alt="league-logo">
-                                     <a href="matches"></a>
+                                     <img src="{{ $league->logo }}" alt="league-logo">
+                                     <a href="{{ route('leagueMatches',['leagueId'=>$league->id]) }}"></a>
                                   </td>
                                   <td>
-                                     <h6>Major League Soccer</h6>
+                                     <h6>{{ $league->name }}</h6>
+                                     <a href="{{ route('leagueMatches',['leagueId'=>$league->id]) }}"></a>
                                   </td>
                                   <td>
-                                     <p>Cup</p>
+                                     <p>{{ $league->type }}</p>
+                                     <a href="{{ route('leagueMatches',['leagueId'=>$league->id]) }}"></a>
                                   </td>
                                   <td>
-                                     <p>7-7-2024</p>
+                                     <p>{{ $league->start_date }}</p>
+                                     <a href="{{ route('leagueMatches',['leagueId'=>$league->id]) }}"></a>
                                   </td>
                                   <td>
-                                    <p>11-8-2024</p>
+                                    <p>{{ $league->end_date }}</p>
+                                    <a href="{{ route('leagueMatches',['leagueId'=>$league->id]) }}"></a>
                                   </td>
                                </tr>
-                               <tr>
-                                 <td class="league-logo">
-                                    <img src="images/league-logo-2.png" alt="league-logo-2">
-                                    <a href="matches"></a>
-                                 </td>
-                                 <td>
-                                    <h6>National Capital Soccer League</h6>
-                                 </td>
-                                 <td>
-                                     <p>Cup</p>
-                                  </td>
-                                 <td>
-                                    <p>12-4-2024</p>
-                                 </td>
-                                 <td>
-                                   <p>8-5-2024</p>
-                                 </td>
-                              </tr>
-                              <tr>
-                                 <td class="league-logo">
-                                    <img src="images/league-logo.png" alt="league-logo">
-                                    <a href="matches"></a>
-                                 </td>
-                                 <td>
-                                    <h6>Major League Soccer</h6>
-                                 </td>
-                                 <td>
-                                    <p>Cup</p>
-                                 </td>
-                                 <td>
-                                    <p>7-7-2024</p>
-                                 </td>
-                                 <td>
-                                   <p>11-8-2024</p>
-                                 </td>
-                              </tr>
-                              <tr>
-                                <td class="league-logo">
-                                   <img src="images/league-logo-2.png" alt="league-logo-2">
-                                   <a href="matches"></a>
-                                </td>
-                                <td>
-                                   <h6>National Capital Soccer League</h6>
-                                </td>
-                                <td>
-                                    <p>Cup</p>
-                                 </td>
-                                <td>
-                                   <p>12-4-2024</p>
-                                </td>
-                                <td>
-                                  <p>8-5-2024</p>
-                                </td>
-                             </tr>
-                             <tr>
-                                 <td class="league-logo">
-                                    <img src="images/league-logo.png" alt="league-logo">
-                                    <a href="matches"></a>
-                                 </td>
-                                 <td>
-                                    <h6>Major League Soccer</h6>
-                                 </td>
-                                 <td>
-                                    <p>Cup</p>
-                                 </td>
-                                 <td>
-                                    <p>7-7-2024</p>
-                                 </td>
-                                 <td>
-                                   <p>11-8-2024</p>
-                                 </td>
-                              </tr>
-                              <tr>
-                                <td class="league-logo">
-                                   <img src="images/league-logo-2.png" alt="league-logo-2">
-                                   <a href="matches"></a>
-                                </td>
-                                <td>
-                                   <h6>National Capital Soccer League</h6>
-                                </td>
-                                <td>
-                                    <p>Cup</p>
-                                 </td>
-                                <td>
-                                   <p>12-4-2024</p>
-                                </td>
-                                <td>
-                                  <p>8-5-2024</p>
-                                </td>
-                             </tr>
-                             <tr>
-                                 <td class="league-logo">
-                                    <img src="images/league-logo.png" alt="league-logo">
-                                    <a href="matches"></a>
-                                 </td>
-                                 <td>
-                                    <h6>Major League Soccer</h6>
-                                 </td>
-                                 <td>
-                                    <p>Cup</p>
-                                 </td>
-                                 <td>
-                                    <p>7-7-2024</p>
-                                 </td>
-                                 <td>
-                                   <p>11-8-2024</p>
-                                 </td>
-                              </tr>
-                              <tr>
-                                <td class="league-logo">
-                                   <img src="images/league-logo-2.png" alt="league-logo-2">
-                                   <a href="matches"></a>
-                                </td>
-                                <td>
-                                   <h6>National Capital Soccer League</h6>
-                                </td>
-                                <td>
-                                    <p>Cup</p>
-                                 </td>
-                                <td>
-                                   <p>12-4-2024</p>
-                                </td>
-                                <td>
-                                  <p>8-5-2024</p>
-                                </td>
-                             </tr>
-                             <tr>
-                                 <td class="league-logo">
-                                    <img src="images/league-logo.png" alt="league-logo">
-                                    <a href="matches"></a>
-                                 </td>
-                                 <td>
-                                    <h6>Major League Soccer</h6>
-                                 </td>
-                                 <td>
-                                    <p>Cup</p>
-                                 </td>
-                                 <td>
-                                    <p>7-7-2024</p>
-                                 </td>
-                                 <td>
-                                   <p>11-8-2024</p>
-                                 </td>
-                              </tr>
-                              <tr>
-                                <td class="league-logo">
-                                   <img src="images/league-logo-2.png" alt="league-logo-2">
-                                   <a href="matches"></a>
-                                </td>
-                                <td>
-                                   <h6>National Capital Soccer League</h6>
-                                </td>
-                                <td>
-                                    <p>Cup</p>
-                                 </td>
-                                <td>
-                                   <p>12-4-2024</p>
-                                </td>
-                                <td>
-                                  <p>8-5-2024</p>
-                                </td>
-                             </tr>
-                             <tr>
-                                 <td class="league-logo">
-                                    <img src="images/league-logo.png" alt="league-logo">
-                                    <a href="matches"></a>
-                                 </td>
-                                 <td>
-                                    <h6>Major League Soccer</h6>
-                                 </td>
-                                 <td>
-                                    <p>Cup</p>
-                                 </td>
-                                 <td>
-                                    <p>7-7-2024</p>
-                                 </td>
-                                 <td>
-                                   <p>11-8-2024</p>
-                                 </td>
-                              </tr>
-                              <tr>
-                                <td class="league-logo">
-                                   <img src="images/league-logo-2.png" alt="league-logo-2">
-                                   <a href="matches"></a>
-                                </td>
-                                <td>
-                                   <h6>National Capital Soccer League</h6>
-                                </td>
-                                <td>
-                                    <p>Cup</p>
-                                 </td>
-                                <td>
-                                   <p>12-4-2024</p>
-                                </td>
-                                <td>
-                                  <p>8-5-2024</p>
-                                </td>
-                             </tr>
-                             <tr>
-                                 <td class="league-logo">
-                                    <img src="images/league-logo.png" alt="league-logo">
-                                    <a href="matches"></a>
-                                 </td>
-                                 <td>
-                                    <h6>Major League Soccer</h6>
-                                 </td>
-                                 <td>
-                                    <p>Cup</p>
-                                 </td>
-                                 <td>
-                                    <p>7-7-2024</p>
-                                 </td>
-                                 <td>
-                                   <p>11-8-2024</p>
-                                 </td>
-                              </tr>
-                              <tr>
-                                <td class="league-logo">
-                                   <img src="images/league-logo-2.png" alt="league-logo-2">
-                                   <a href="matches"></a>
-                                </td>
-                                <td>
-                                   <h6>National Capital Soccer League</h6>
-                                </td>
-                                <td>
-                                    <p>Cup</p>
-                                 </td>
-                                <td>
-                                   <p>12-4-2024</p>
-                                </td>
-                                <td>
-                                  <p>8-5-2024</p>
-                                </td>
-                             </tr>
+                              @endforeach    
                             </tbody> 
                          </table>
                       </div>
@@ -305,4 +77,10 @@
   
 </section>
 
+@endsection
+
+@section('custom-script')
+<script>
+  let table = new DataTable('#myTable');
+</script>
 @endsection

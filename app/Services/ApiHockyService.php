@@ -6,9 +6,9 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
-// use App\Models\League;
-// use App\Models\Matche;
-// use App\Models\Player;
+use App\Models\League;
+use App\Models\Matche;
+use App\Models\Player;
 
 class ApiHockyService
 {
@@ -51,6 +51,91 @@ class ApiHockyService
             return ['error' => 'Request failed'];
         }
     }
+
+    public function addHockyData(){
+
+        $leagues = $this->get('/leagues', [
+            'season' => date("Y"),
+            // 'last' => 5
+        ]);
+
+        if(isset($leagues) && !empty($leagues['response'])){
+            foreach ($leagues['response'] as $league) {
+                $league_res = League::updateOrCreate(
+                    [
+                        'league_id' => $league['id'],
+                    ],
+                    [
+                        'name' => $league['name'],
+                        'type' => $league['type'],
+                        'logo' => $league['logo'],
+                        'country_name' => $league['country']['name'],
+                        'country_code' => $league['country']['code'],
+                        'country_flag' => $league['country']['flag'],
+                        'year' => $league['seasons'][0]['season'],
+                        'start_date' => $league['seasons'][0]['start'],
+                        'end_date' => $league['seasons'][0]['end'],
+                    ]
+                );
+        
+                if ($league_res) {
+                    $this->processLeagueMatches($league_res);
+                }
+            } 
+        }
+    }
+
+    private function processLeagueMatches($league)
+    {
+        $matches = $this->getMatches($league);
+    
+        if (!empty($matches['response'])) {
+            $this->addMatch($matches['response'], $league->id);
+        }
+    }
+    
+    private function getMatches($league)
+    {
+        return $this->get('/games', [
+            'league' => $league->league_id,
+            // 'from' => Carbon::now()->format('Y-m-d'),
+            // 'to' => Carbon::now()->addYear(100)->format('Y-m-d'),
+            'season' => Carbon::now()->format('Y'),
+        ]);
+    }
+
+     private function addMatch($matches, $league_id)
+    {
+        foreach ($matches as $match) {
+            $match_res = Matche::updateOrCreate(
+                [
+                    'league_id' => $league_id,
+                    'fixture_id' => $match['id'],
+                ],
+
+                [
+                    'venue_name' => '',
+                    'venue_city' => '',
+                    'long_status' => $match['status']['long'],
+                    'short_status' => $match['status']['short'],
+                    'home_team_id' => $match['teams']['home']['id'],
+                    'home_team_name' => $match['teams']['home']['name'],
+                    'home_team_logo' => $match['teams']['home']['logo'],
+                    'away_team_id' => $match['teams']['away']['id'],
+                    'away_team_name' => $match['teams']['away']['name'],
+                    'away_team_logo' => $match['teams']['away']['logo'],
+
+                    'fixture_date' => $match['date'],
+                ]
+            );
+    
+            // if ($match_res) {
+            //     $this->addPlayers($match_res);
+            // }
+        }
+    }
+
+    
 
     // public function getCurrentTeamCount()
     // {

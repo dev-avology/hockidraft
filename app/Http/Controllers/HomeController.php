@@ -8,6 +8,7 @@ use App\Services\ApiHockyService;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ContactRequest;
 use App\Models\ContactUs;
+use App\Models\League;
 // use 
 
 class HomeController extends Controller
@@ -30,7 +31,11 @@ class HomeController extends Controller
 
         // dd($leagues);
         // $leagues = League::whereHas('leagueMatches')->limit(25)->get();
-        return view('front_end.pages.home');
+        $leagues = League::whereHas('leagueMatches')
+        ->orderBy('start_date', 'desc')
+        ->limit(10)
+        ->get();
+        return view('front_end.pages.home',compact('leagues'));
     }
 
     public function howToPlay(){

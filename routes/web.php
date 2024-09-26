@@ -26,6 +26,7 @@ Route::get('login', [AuthController::class, 'login'])->name('login');
 Route::get('sign-up', [AuthController::class, 'signUp'])->name('signup');
 Route::post('sign-up-post', [AuthController::class, 'signUpPost'])->name('signup.post');
 Route::post('login-post', [AuthController::class, 'loginPost'])->name('login.post');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -35,6 +36,7 @@ Route::get('contact-us', [HomeController::class, 'contactUs'])->name('contact-us
 Route::post('/contact-save', [HomeController::class, 'contactSave'])->name('contact.save');
 Route::get('/privacy-policy', [HomeController::class, 'privacyPolicy'])->name('privacy');
 Route::get('/terms-conditions', [HomeController::class, 'termsCondition'])->name('terms');
+
 
 
 Route::middleware('auth')->group(function () {
@@ -52,6 +54,10 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('leagues', [HockyController::class, 'leagues'])->name('leagues');
+Route::get('/league/{leagueId}/matches', [HockyController::class, 'getLeagueMatches'])->name('leagueMatches');
+Route::get('/matche-detail/{matcheId}', [HockyController::class, 'matchDetails'])->name('matche-detail');
+
+
 
 
 
