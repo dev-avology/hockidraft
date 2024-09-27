@@ -135,6 +135,17 @@ class ApiHockyService
         }
     }
 
+    public function getCurrentTeamCount()
+    {
+        $count = 0;
+        if(Session::has('myTeam') && is_array(Session::get('myTeam')))
+        {
+            $team_data = Session::get('myTeam');
+            $count = count($team_data);
+        }
+        return $count ;
+    }
+
     
 
     // public function getCurrentTeamCount()

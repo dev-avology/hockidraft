@@ -74,7 +74,7 @@
                                                 <p>{{$data->player_pos}}</p>
                                              </td>
                                              <td class="match-score">
-                                                <h4>{{ $points }}</h4>
+                                                <h6>{{ $points }}</h6>
                                              </td>
                                           </tr>
                                        @endforeach

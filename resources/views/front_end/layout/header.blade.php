@@ -56,7 +56,7 @@
                                             Profile</a>
                                     </li>
                                     <li>
-                                        <a href="my-matches.html"><img src="{{asset('images/stadium.svg')}}" alt="stadium">My
+                                        <a href="{{route('profile.matches')}}"><img src="{{asset('images/stadium.svg')}}" alt="stadium">My
                                             Matches</a>
                                     </li>
                                     <li>

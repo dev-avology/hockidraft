@@ -22,6 +22,14 @@
         <div class="flex flex-col items-center justify-center w-screen min-h-screen bg-gray-900 py-10">
            <!-- Component Start -->
            <h1 class="font-medium">{{date('Y')}} Season</h1>
+
+            @if(Session::has('success'))
+            <span class="alert alert-success text-center" style="width:100%;">{{ Session::get('success') }}</span>
+            @elseif(Session::has('error'))
+            <span class="alert alert-danger text-center" style="width:100%;">{{ Session::get('error') }}</span>
+         
+            @endif
+
            <div class="flex flex-col mt-6">
               <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                  <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">

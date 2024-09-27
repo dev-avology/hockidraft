@@ -35,29 +35,74 @@
                                            </tr>
                                        </thead>
                                        <tbody>
-                                          @foreach($matches as $key => $value)
+                                          {{-- @foreach($matches as $key => $value)
                                              <tr class="matche-main" data-fixture-id="{{ $value->id}}">
                                                 <td class="match-team-logo">
                                                    <img src="{{$value->home_team_logo}}" alt="team-logo-3">
-                                                   {{-- <span>SHL</span> --}}
                                                    <h6>{{$value->home_team_name}}</h6>
                                                    <a href="premier-league-players"></a>
                                                 </td>
                                                 <td>
-                                                   {{-- <h6>Chase Stadium</h6>
-                                                   <p>Fort Lauderdale, Florida</p> --}}
+                                                  
                                                    <span>{{ date('Y-m-d h:i a',strtotime($value->fixture_date))}}</span>
 
                                                 </td>
 
                                                 <td class="match-team-logo">
-                                                   {{-- <span>CNGZ</span> --}}
                                                    <img src="{{$value->away_team_logo}}"
                                                          alt="team-logo-2">
                                                    <h6>{{$value->away_team_name}}</h6>
                                                 </td>
                                              </tr>
+                                          @endforeach --}}
+
+
+                                          @foreach ($matches as $key => $matche)
+                                          @php
+                                           $startSoonMatch = getMatchStatus($matche->fixture_date);
+                                          @endphp
+                                          <tr class="matche-main" data-fixture-id="{{ $matche->id}}"  data-home-team="{{ $matche->home_team_id }}" data-away-team="{{ $matche->away_team_id }}">
+                                              <td class="match-team-logo">
+                                                  {{-- <img src="" alt="team-logo-3" class="lazy-load"> --}}
+                                                  {{-- <img class="lazy-load" data-src="{{ $matche->home_team_logo }}" alt="team-logo"> --}}
+                                                  <img src="{{$matche->home_team_logo}}" alt="team-logo-3">
+      
+                                                  {{-- <span>SHL</span> --}}
+                                                  <h6>{{ $matche->home_team_name }}</h6>
+                                                
+                                                  @if($matche->short_status == 'LIVE' || $matche->short_status == '1H' || $matche->short_status == 'HT' || $matche->short_status == '2H' || $matche->short_status == 'ET' || $matche->short_status == 'BT' || $matche->short_status == 'P' || $matche->short_status == 'SUSP' || $matche->short_status == 'INT' || $matche->short_status == 'INT')
+      
+                                                   <div id="Head-Banner">
+                                                      <span id="Head-Banner-Text">LIVE ({{ $matche->long_status }})</span>
+                                                   </div>
+      
+                                                  @elseif((isset($startSoonMatch) && !empty($startSoonMatch) && $startSoonMatch <= 40) || ( $startSoonMatch == '0'))
+      
+                                                   <div id="Head-Banner">
+                                                      <span id="Head-Banner-Text">Start In {{ $startSoonMatch.' mints' }}</span>
+                                                   </div>
+      
+                                                   @endif
+                                              </td>
+                                              <td>
+                                                  <h6>{{$matche->venue_name}}</h6>
+                                                  <p>{{$matche->venue_city}}</p>
+                                                  <span>{{ date('Y-m-d h:i a',strtotime($matche->fixture_date))}}</span>
+      
+                                              </td>
+      
+                                              <td class="match-team-logo">
+                                                  {{-- <span>CNGZ</span> --}}
+                                                  {{-- <img src="{{ $matche['teams']['away']['logo'] }}" alt="team-logo-2"> --}}
+                                                  {{-- <img class="lazy-load" data-src="{{ $matche->away_team_logo }}" alt="team-logo"> --}}
+                                                  <img src="{{$matche->home_team_logo}}" alt="team-logo-3">
+                                                  <h6>{{ $matche->away_team_name }}</h6>
+                                              </td>
+      
+      
+                                          </tr>
                                           @endforeach
+
                                        </tbody>
                                    </table>
                                </div>
@@ -76,7 +121,7 @@
 
 @endsection
 
-@section('custom-script')
+{{-- @section('custom-script')
 <script>
   let table = new DataTable('#myTable');
   $(".matche-main").on('click', function(event) {
@@ -87,4 +132,78 @@
       window.location.href = url;
   });
 </script>
+@endsection --}}
+
+@section('custom-script')
+<script>
+ $(".matche-main").on('click', function() {
+   //  var homeTeam = $(this).data('home-team'); // Assuming teams is an array
+   //  var awayTeam = $(this).data('away-team'); // Assuming teams is an array
+   //  var leagueId = $(this).data('league-id'); // Assuming teams is an array
+    var matcheId = $(this).data('fixture-id'); // Assuming teams is an array
+
+    var url = "{{ route('matche-detail', [':matcheId']) }}";
+    url = url.replace(':matcheId', matcheId);
+    window.location.href = url;
+});
+
+//  $(".matche-main-not-start").on('click',function(){
+//     $("#error-message").html("Lineups are available between 20 and 40 minutes before the match start");
+//     $("#errorModal2").modal('show');
+//  })
+
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    let table = new DataTable('#myTable');
+</script>
+
+<script>
+
+   document.addEventListener("DOMContentLoaded", function() {
+      lazyLoading();
+   });
+
+   $(document).ready(function() {
+
+      $(document).on('click', '.dt-paging-button', function() {
+         lazyLoading();
+      });
+
+      $('.dt-input').on('keyup change', function () {
+         lazyLoading();
+      });
+
+   });
+
+  function lazyLoading(){
+  
+   let lazyImages = [].slice.call(document.querySelectorAll("img.lazy-load"));
+
+   if ("IntersectionObserver" in window) {
+      let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+         entries.forEach(function(entry) {
+               if (entry.isIntersecting) {
+                  let lazyImage = entry.target;
+                  lazyImage.src = lazyImage.dataset.src;
+                  lazyImage.classList.remove("lazy-load");
+                  lazyImageObserver.unobserve(lazyImage);
+               }
+         });
+      });
+
+      lazyImages.forEach(function(lazyImage) {
+         lazyImageObserver.observe(lazyImage);
+      });
+   } else {
+      // Fallback for older browsers
+      lazyImages.forEach(function(lazyImage) {
+         lazyImage.src = lazyImage.dataset.src;
+      });
+   }
+  }
+
+</script>
+
 @endsection
+

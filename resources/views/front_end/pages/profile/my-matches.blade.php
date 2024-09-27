@@ -58,7 +58,7 @@
                                      </td>
                                      <td class="match-score">
 
-                                        <h4>{{$points ?? 0}}</h4>
+                                        <h6>{{$points ?? 0}}</h6>
 
                                      </td>
                                      <td class="match-status">

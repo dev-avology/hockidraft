@@ -34,7 +34,7 @@ class Matche extends Model
         // Return matches where the league_id matches the input and the match has players
         return self::with('league')
             ->where('league_id', $leagueId)
-            // ->whereHas('matchPlayers') 
+            ->whereHas('matchPlayers') 
             ->orderBy('fixture_date','asc')
             ->get(); 
     }

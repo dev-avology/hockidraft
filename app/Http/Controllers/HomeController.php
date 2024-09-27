@@ -24,17 +24,10 @@ class HomeController extends Controller
 
     public function index()
     {
-        // $leagues = $this->apiHockyService->get('/players', [
-        //     'team' => 2234,
-        //     // 'last' => 5
-        // ]);
+        $leagues = League::whereHas('leagueMatches', function ($query) {
+            $query->whereHas('matchPlayers');
+           })->orderBy('start_date','desc')->limit(25)->get();
 
-        // dd($leagues);
-        // $leagues = League::whereHas('leagueMatches')->limit(25)->get();
-        $leagues = League::whereHas('leagueMatches')
-        ->orderBy('start_date', 'desc')
-        ->limit(10)
-        ->get();
         return view('front_end.pages.home',compact('leagues'));
     }
 

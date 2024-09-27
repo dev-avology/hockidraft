@@ -41,14 +41,14 @@ Route::get('/terms-conditions', [HomeController::class, 'termsCondition'])->name
 
 Route::middleware('auth')->group(function () {
 
-    // Route::get('/save-team', [FootballController::class, 'saveTeam'])->name('save-team');
+    Route::get('/save-team', [HockyController::class, 'saveTeam'])->name('save-team');
     Route::prefix('profile')->group(function () {
         Route::get('/my-profile', [ProfileController::class, 'myProfile'])->name('profile.profile');
         Route::post('/update-profile', [ProfileController::class, 'updateProfile'])->name('profile.update');
         Route::get('/change-password', [ProfileController::class, 'changePassword'])->name('profile.change.password');
         Route::post('/update-password', [ProfileController::class, 'updatePassword'])->name('profile.update.password');
-        // Route::get('/my-matches', [ProfileController::class, 'myMatches'])->name('profile.matches');
-        // Route::get('/match-detail/{leagueId}/{matchId}', [ProfileController::class, 'matchDetails'])->name('profile.match-detail');
+        Route::get('/my-matches', [ProfileController::class, 'myMatches'])->name('profile.matches');
+        Route::get('/match-detail/{leagueId}/{matchId}', [ProfileController::class, 'matchDetails'])->name('profile.match-detail');
         Route::post('/profile/update-pic', [ProfileController::class, 'updateProfilePic'])->name('profile.update-pic');
     });
 });
@@ -56,6 +56,13 @@ Route::middleware('auth')->group(function () {
 Route::get('leagues', [HockyController::class, 'leagues'])->name('leagues');
 Route::get('/league/{leagueId}/matches', [HockyController::class, 'getLeagueMatches'])->name('leagueMatches');
 Route::get('/matche-detail/{matcheId}', [HockyController::class, 'matchDetails'])->name('matche-detail');
+
+Route::get('/my-team', [HockyController::class, 'viewTeam'])->name('my-team')->middleware('myTeamMiddleware');
+Route::get('/current-team-count', [HockyController::class, 'currentTeamCount'])->name('current-team-count');
+Route::get('/auth.check', [HockyController::class, 'AuthCheck'])->name('auth.check');
+Route::post('/make-captain', [HockyController::class, 'makeCaptain'])->name('make.captain');
+Route::post('/create-team', [HockyController::class, 'createTeam'])->name('create-team');
+
 
 
 
