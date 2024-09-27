@@ -20,7 +20,7 @@
    <div class="container">
       <div class="leagure_container">
          <div class="flex flex-col items-center justify-center w-screen min-h-screen bg-gray-900 py-10">
-            <a href="https://soccer-spotlight.com/league/698/matches" class="back-btn">
+            <a href="{{ route('leagueMatches',['leagueId'=>request()->segment(2)]) }}" class="back-btn">
                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff">
                   <path d="M360-240 120-480l240-240 56 56-144 144h568v80H272l144 144-56 56Z"></path>
                </svg>
