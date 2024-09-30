@@ -18,8 +18,8 @@ class ApiHockyService
 
     public function __construct()
     {
-        $this->baseUrl = env('API_FOOTBALL_BASE_URL');
-        $this->apiKey = env('API_FOOTBALL_API_KEY');
+        $this->baseUrl = env('API_HOCKY_BASE_URL');
+        $this->apiKey = env('API_HOCKY_API_KEY');
         $this->client = new Client([
             'base_uri' => $this->baseUrl,
             'timeout'  => 5.0,
@@ -129,9 +129,9 @@ class ApiHockyService
                 ]
             );
     
-            // if ($match_res) {
-            //     $this->addPlayers($match_res);
-            // }
+            if ($match_res) {
+                $this->addPlayers($match_res);
+            }
         }
     }
 
@@ -261,44 +261,45 @@ class ApiHockyService
     //     }
     // }
     
-    // private function addPlayers($match_res)
-    // {
-    //     $teamIds = [$match_res->home_team_id, $match_res->away_team_id];
+    private function addPlayers($match_res)
+    {
+        $teamIds = [$match_res->home_team_id, $match_res->away_team_id];
     
-    //     foreach ($teamIds as $teamId) {
-    //         $playerDetails = $this->getPlayers($teamId);
+        foreach ($teamIds as $teamId) {
+            $playerDetails = $this->getPlayers($match_res->fixture_id);
+            // \Log::info($playerDetails);
+            if (!empty($playerDetails['response'])) {
+                $this->savePlayers($playerDetails['response'], $match_res->id);
+            }
+        }
+    }
     
-    //         if (!empty($playerDetails['response'])) {
-    //             $this->savePlayers($playerDetails['response'], $match_res->id);
-    //         }
-    //     }
-    // }
+    private function getPlayers($match_id)
+    {
+        return $this->get('games/events', [
+            'game' => $match_id,
+            // 'season' => Carbon::now()->format('Y'),
+        ]);
+    }
     
-    // private function getPlayers($teamId)
-    // {
-    //     return $this->get('players', [
-    //         'team' => $teamId,
-    //         'season' => Carbon::now()->format('Y'),
-    //     ]);
-    // }
-    
-    // private function savePlayers($players, $matchId)
-    // {
-    //     foreach ($players as $player) {
-    //         Player::updateOrCreate(
-    //             [
-    //                 'match_id' => $matchId,
-    //                 'player_id' => $player['player']['id'],
-    //             ],
-    //             [
-    //                 'player_team_id' => $player['statistics'][0]['team']['id'],
-    //                 'name' => $player['player']['name'],
-    //                 'age' => $player['player']['age'],
-    //                 'position' => $player['statistics'][0]['games']['position'],
-    //                 'injured' => $player['player']['injured'] == true ? '1' : '0',
-    //                 'team_logo' => $player['statistics'][0]['team']['logo'],
-    //             ]
-    //         );
-    //     }
-    // }
+    private function savePlayers($players, $matchId)
+    {
+        foreach ($players as $player) {
+            Player::updateOrCreate(
+                [
+                    'match_id' => $matchId,
+                ],
+                [
+                    'player_team_id' => $player['team']['id'],
+                    'name' => $player['players'][0],
+                    'age' => null,
+                    'position' => null,
+                    'injured' => null,
+                    'type' => $player['type'],
+                    // 'assists' => $player['assists'],
+                    'team_logo' => $player['team']['logo'],
+                ]
+            );
+        }
+    }
 }

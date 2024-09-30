@@ -17,6 +17,8 @@ class Player extends Model
         'position',
         'injured',
         'team_logo',
+        'type',
+        'assists',
     ];
 
     use HasFactory;

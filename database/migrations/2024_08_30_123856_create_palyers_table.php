@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('age')->nullable();
             $table->string('position')->nullable();
+            $table->string('type')->nullable();
             $table->enum('injured', ['0', '1'])->comment('0 means not injured and 1 means injured.')->nullable();
             $table->string('team_logo')->nullable();
             $table->foreign('match_id')->references('id')->on('matches')->onDelete('cascade');

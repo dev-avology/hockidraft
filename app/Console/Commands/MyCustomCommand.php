@@ -25,6 +25,7 @@ class MyCustomCommand extends Command
     /**
      * Execute the console command.
      */
+    
     public function handle()
     {
         AddHockyData::dispatch();
